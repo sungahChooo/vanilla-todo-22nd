@@ -1,18 +1,8 @@
-// 오늘 날짜 YYYY-MM-DD 반환
-function getToday() {
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = String(today.getMonth() + 1).padStart(2, "0");
-  const day = String(today.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   const todoInput = document.getElementById("todoInput");
   const addBtn = document.getElementById("addBtn");
   const todoList = document.getElementById("todoList");
-  const filterDateInput = document.getElementById("filterDate"); // 날짜 입력 (추가+조회 겸용)
-  const filterBtn = document.getElementById("filterBtn");
+  const selectedDateInput = document.getElementById("selectedDateInput"); // 날짜 입력 (추가+조회 겸용)
   const resetBtn = document.getElementById("resetBtn");
   const countDisplay = document.getElementById("countDisplay");
 
@@ -42,6 +32,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     todoInput.value = "";
     filterDateInput.value = date; // 날짜 유지
+  });
+  todoInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      addBtn.click();
+    }
   });
 
   // 조회
@@ -85,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
       li.dataset.id = todo.id;
 
       const span = document.createElement("span");
-      span.textContent = `${todo.text} (${todo.date})`;
+      span.textContent = `${todo.text}`;
 
       const delBtn = document.createElement("button");
       delBtn.textContent = "삭제";
@@ -107,3 +102,12 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }
 });
+
+// 오늘 날짜 YYYY-MM-DD 반환
+function getToday() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}

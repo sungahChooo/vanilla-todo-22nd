@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <title>투두 앱</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="/favicon.ico">
   </head>
   <body>
     <h1 id="title"">To do list</h1>
@@ -11,12 +12,12 @@
     <!-- 날짜별 조회 및 추가 날짜도 같이 사용 -->
     <section id="get-by-date">
       <label for="filterDate">날짜: </label>
-      <input type="date" id="filterDate" />
-      <button id="resetBtn">전체보기</button>
+      <input type="date" id="selectedDateInput" />
+      <button id="displayAllBtn">전체보기</button>
     </section>
 
     <!-- 투두 입력 영역 -->
-    <section class="inputDiv">
+    <section id="inputDiv">
       <input type="text" id="todoInput" placeholder="할 일을 입력하세요." />
       <button id="addBtn">추가</button>
       <span id="countDisplay"></span>
